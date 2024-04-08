@@ -1,3 +1,44 @@
+# 0x00-ES6_basic
+
+[tasks page]()
+
+## Tools
+
+### [Jest](https://jestjs.io/docs/getting-started)
+
+- **Integrated Assertion Library**: Jest comes with its own assertion library, allowing you to write test assertions without additional setup.
+- **Automatic Mocking**: Jest automatically mocks dependencies, simplifying the setup of tests and reducing the need for manual mocking.
+- **Snapshot Testing**: Snapshot testing captures the output of components or functions and compares it with stored snapshots to detect unexpected changes.
+- **Mock Functions**: Jest provides built-in support for creating mock functions to simulate behavior and track calls during testing.
+- **Code Coverage Reporting**: Jest collects code coverage information during test execution and generates reports to identify untested code paths.
+- **Asynchronous Testing Support**: Jest simplifies testing asynchronous code with utilities for handling promises, timers, and asynchronous operations.
+
+### [Babel](https://babeljs.io/docs/)
+
+**What is Babel?**
+Babel is a JavaScript compiler that transforms modern JavaScript code (ES6+ syntax) into backward-compatible versions (ES5 or earlier) that can run in older browsers or environments. It enables developers to write code using the latest JavaScript features while ensuring compatibility with a wider range of platforms.
+
+**Key Features of Babel:**
+
+- **Transpilation**: Babel transpiles modern JavaScript code into a compatible version that can be executed in environments that do not support the latest language features.
+- **Plugin System**: Babel features a plugin-based architecture that allows developers to customize the transformation process according to their project's requirements.
+- **Presets**: Babel presets are pre-configured sets of plugins that provide common transformation configurations for specific environments or use cases.
+- **Source Maps**: Babel generates source maps, which map the transformed code back to its original source, facilitating debugging and error tracking in development environments.
+
+### [ESLint](https://eslint.org/)
+
+**What is ESLint?**
+ESLint is a static code analysis tool for identifying and reporting patterns and problems in JavaScript code. It helps maintain code quality, enforce coding standards, and identify potential errors or inconsistencies in the codebase.
+
+**Key Features of ESLint:**
+
+- **Linting Rules**: ESLint provides a set of configurable linting rules that define coding standards and best practices for JavaScript code.
+- **Extensibility**: ESLint supports plugins and custom rules, allowing developers to extend and customize linting rules according to project-specific requirements.
+- **Integration with Editors and CI/CD Pipelines**: ESLint integrates with code editors and IDEs, providing real-time feedback and suggestions to developers as they write code. It can also be integrated into CI/CD pipelines to enforce code quality checks in automated workflows.
+- **Automatic Fixes**: ESLint can automatically fix certain types of issues identified in the code, such as indentation errors, unused variables, and missing semicolons, using the `--fix` option.
+
+In summary, Jest is a testing framework for JavaScript, Babel is a compiler for modern JavaScript syntax, and ESLint is a static code analysis tool for identifying and fixing issues in JavaScript code. Together, these tools enable developers to write, test, and maintain high-quality JavaScript codebases effectively.
+
 # 0x00. ES6 Basics
 
 ### What is ES6?
@@ -49,7 +90,7 @@ double(5); // 10
 greet();   // Hello, stranger!
 ```
 
-[more of arrow functions]([Arrow function expressions - JavaScript | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions))
+[more of arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 ### Rest and Spread Parameters
 
@@ -74,7 +115,6 @@ console.log(`Hello, ${name}!`); // Hello, John!
 ### Object Creation and Properties
 
 - **Shorthand Property Assignment**:
-  
 
 In ES6, if the property name and variable name are the same, you can omit the property name when creating an object literal.
 
@@ -88,22 +128,33 @@ console.log(point); // Output: { x: 10, y: 20 }
 ```
 
 - **Computed Property Names**:
-  
 
 ES6 allows you to use expressions for property names in object literals using square brackets (`[]`).
 
 ```javascript
-const propName = 'color';
+const propName = 'foo';
+
 const obj = {
-  [propName]: 'blue'
+  [propName]: 'bar', // Computed property name
 };
 
-console.log(obj.color); // Output: 'blue'
+console.log(obj); // Output: { foo: 'bar' }blue'
+```
 
+Computed property names can also include expressions and function calls to dynamically generate property names.
+
+```javascript
+const prefix = 'user';
+const suffix = '123';
+
+const obj = {
+  [`${prefix}-${suffix}`]: 'John Doe', // Computed property name with expression
+};
+
+console.log(obj); // Output: { 'user-123': 'John Doe' }
 ```
 
 - **Object Destructuring**:
-  
 
 Object destructuring is a powerful feature that allows you to extract properties from objects and assign them to variables.
 
@@ -118,7 +169,6 @@ const { name, age } = person;
 
 console.log(name); // Output: 'John'
 console.log(age);  // Output: 30
-
 ```
 
 You can also assign default values to variables in case the property doesn't exist in the object:
@@ -127,7 +177,37 @@ You can also assign default values to variables in case the property doesn't exi
 const { name, age, gender = 'Male' } = person;
 
 console.log(gender); // Output: 'Male' (since 'gender' property doesn't exist in 'person')
+```
 
+### Method properties
+
+Method properties in JavaScript are a shorthand notation for defining functions within object literals or class declarations. They allow you to define functions as properties of an object without using the `function` keyword explicitly.
+
+```javascript
+const obj = {
+  // Method property using shorthand notation
+  myMethod() {
+    // Function body
+}
+};
+// *** instead of ***
+const obj = {
+  // Method property using shorthand notation
+  myMethod: function() {
+    // Function body
+}
+};
+
+
+//*** we can also use arrow functions
+const obj = {
+  name: 'Alice',
+  greet: () => {
+    console.log(`Hello, ${this.name}!`);
+  }
+};
+
+obj.greet(); // Output: Hello, undefined!
 ```
 
 ### Iterators and `for-of` Loops
