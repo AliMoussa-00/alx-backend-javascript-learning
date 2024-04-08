@@ -224,3 +224,69 @@ for (const num of numbers) {
   console.log(num); // 1, 2, 3
 }
 ```
+
+**Generator Function**
+
+A generator function is a special type of function in JavaScript that allows you to define an iterator. It's declared using the `function*` syntax
+
+```javascript
+function* myGeneratorFunction() {
+  // Function body
+}
+
+```
+
+When a generator function is called, it doesn't execute its code immediately like regular functions. Instead, it returns an iterator object called a generator. This generator can then be used to control the execution of the generator function's code.
+
+#### **Yield Keyword**:
+
+Inside a generator function, the `yield` keyword is used to pause and resume the execution of the function. When `yield` is encountered, it suspends the function's execution and returns a value to the caller. The state of the function is saved, allowing it to be resumed later.
+
+```javascript
+function* myGeneratorFunction() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+```
+
+In this example, `yield` is used three times to return different values (`1`, `2`, and `3`) each time the generator function is called.
+
+#### **Iterator Protocol**:
+
+Generator functions implement the iterator protocol in JavaScript. This protocol defines a standard way to produce a sequence of values using the `next()` method.
+
+```javascript
+const generator = myGeneratorFunction();
+console.log(generator.next()); // { value: 1, done: false }
+console.log(generator.next()); // { value: 2, done: false }
+console.log(generator.next()); // { value: 3, done: false }
+console.log(generator.next()); // { value: undefined, done: true }
+
+```
+
+1. In this example, `next()` is called four times on the generator, each time resuming the execution of the generator function until it reaches the next `yield` statement.
+
+**Generator functions are particularly useful for defining custom iterators and implementing lazy evaluation, where values are generated on-demand rather than all at once. They provide a powerful mechanism for working with sequences of data in JavaScript.**
+
+#### example:
+
+```javascript
+// Define a generator function
+function* myGeneratorFunction() {
+  yield 'Hello';
+  yield 'World';
+  yield '!';
+}
+
+// Create an iterator from the generator function
+const generator = myGeneratorFunction();
+
+// Call next() to iterate over the generator
+console.log(generator.next()); // Output: { value: 'Hello', done: false }
+console.log(generator.next()); // Output: { value: 'World', done: false }
+console.log(generator.next()); // Output: { value: '!', done: false }
+console.log(generator.next()); // Output: { value: undefined, done: true }
+
+```
