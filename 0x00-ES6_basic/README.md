@@ -1,4 +1,5 @@
 # 0x00-ES6_basic
+[tasks](https://drive.google.com/file/d/1OKoSMWsybYwObxZBhsjAZGN7vKdW1E7R/view?usp=sharing)
 
 [tasks page]()
 
