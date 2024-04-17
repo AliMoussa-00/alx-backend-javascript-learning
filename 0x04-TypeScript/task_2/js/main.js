@@ -47,6 +47,9 @@ function executeWork(employee) {
     }
     return employee.workTeacherTasks();
 }
+function teachClass(todayClass) {
+    return "Teaching ".concat(todayClass);
+}
 /////// testing ///////////////
 var employeeA = createEmployee(200);
 var employeeB = createEmployee(700);
@@ -56,3 +59,5 @@ console.log(isDirector(employeeA));
 console.log(isDirector(employeeB));
 console.log(executeWork(employeeA));
 console.log(executeWork(employeeB));
+console.log(teachClass('Math'));
+console.log(teachClass('History'));

@@ -57,6 +57,15 @@ function executeWork(employee: Director | Teacher) {
 	return (employee as Teacher).workTeacherTasks();
 }
 
+/**
+ * task_7
+ */
+type Subjects = 'Math' | 'History';
+
+function teachClass(todayClass: Subjects) {
+	return `Teaching ${todayClass}`;
+}
+
 /////// testing ///////////////
 const employeeA = createEmployee(200);
 const employeeB = createEmployee(700);
@@ -69,3 +78,6 @@ console.log(isDirector(employeeB));
 
 console.log(executeWork(employeeA));
 console.log(executeWork(employeeB));
+
+console.log(teachClass('Math'));
+console.log(teachClass('History'));
