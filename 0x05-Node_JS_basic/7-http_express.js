@@ -1,8 +1,6 @@
 const express = require('express');
 const fs = require('fs').promises;
 
-const args = process.argv;
-
 async function countStudents(path) {
   try {
     const data = await fs.readFile(path, 'utf8');
@@ -31,7 +29,9 @@ async function countStudents(path) {
     let text = `Number of students: ${totalStudents}`;
 
     for (const [field, names] of Object.entries(students)) {
-      text += `\nNumber of students in ${field}: ${names.length}. List: ${names.join(', ')}`;
+      text += `\nNumber of students in ${field}: ${names.length}. List: ${names.join(
+        ', ',
+      )}`;
     }
 
     return text;
@@ -47,16 +47,15 @@ app.get('/', (req, res) => {
   res.send('Hello Holberton School!');
 });
 
-app.get('/students', async (req, res) => {
-  const path = args[2];
-
-  try {
-    const students = await countStudents(path);
-    res.send(`This is the list of our students\n${students}`);
-  } catch (err) {
-    res.status = 500;
-    res.send(err.message);
-  }
+app.get('/students', (req, res) => {
+  res.write('This is the list of our students\n');
+  countStudents(process.argv[2])
+    .then((data) => {
+      res.end(data);
+    })
+    .catch((err) => {
+      res.end(err.message);
+    });
 });
 
 app.listen(port);
