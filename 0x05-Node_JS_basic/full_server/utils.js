@@ -1,6 +1,6 @@
 const fs = require('fs').promises;
 
-const readDatabase = async path => {
+const readDatabase = async (path) => {
   try {
     const data = await fs.readFile(path, 'utf8');
 
@@ -13,7 +13,7 @@ const readDatabase = async path => {
 
     const students = {};
 
-    lines.forEach(line => {
+    lines.forEach((line) => {
       const [firstname, lastname, age, field] = line.split(',');
       if (firstname && lastname && age && field) {
         if (!students[field]) {

@@ -9,6 +9,6 @@ process.stdin.on('data', (data) => {
   process.stdin.pause();
 });
 
-process.on('exit', (code) => {
+process.on('exit', () => {
   process.stdout.write('This important software is now closing\n');
 });
